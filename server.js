@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 const pug = require('pug');
 
-app.use()
+app.set('view engine', 'pug');
 
 // https://expressjs.com/en/starter/basic-routing.html
 app.get('/', (request, response) => {
@@ -15,7 +15,7 @@ app.get('/', (request, response) => {
 });
 
 app.get('/todos', (request, response) => {
-  response.send('');
+  response.render('views/todos');
 });
 
 // listen for requests :)
