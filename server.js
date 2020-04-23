@@ -12,9 +12,9 @@ app.set("views", "./views");
 
 var todolist = [
   {id: 1, val: 'Đi chợ'},
-  {id: 1, val: 'Nấu cơm'},
-  {id: 1, val: 'Rửa bát'},
-  {id: 1, val: 'Học code tại CodersX'}
+  {id: 2, val: 'Nấu cơm'},
+  {id: 3, val: 'Rửa bát'},
+  {id: 4, val: 'Học code tại CodersX'}
 ]
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
@@ -33,7 +33,8 @@ app.get("/todos/search", (req, res) => {
     return todo.val.toLowerCase().indexOf(q.toLowerCase()) !== -1
   })
   res.render("todos",{
-    todos : matchedToDo
+    todos : matchedToDo,
+    q: q
   });
 });
 
