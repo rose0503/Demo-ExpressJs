@@ -30,10 +30,10 @@ app.get("/todos", (request, response) => {
 app.get("/todos/search", (req, res) => {
   var q = req.query.q;
   var matchedToDo = todolist.filter((todo)=>{
-    return todo.val.indexOf(q)
+    return todo.val.toLowerCase().indexOf(q.toLowerCase()) !== -1
   })
   res.render("todos",{
-    todos : todolist
+    todos : matchedToDo
   });
 });
 
