@@ -10,13 +10,28 @@ const pug = require("pug");
 app.set("view engine", "pug");
 app.set("views", "./views");
 
+var todolist = [
+  'Đi chợ',
+  'Nấu cơm',
+  'Rửa bát',
+  'Học code tại CodersX'
+]
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
   response.send("I love CodersX");
 });
 
 app.get("/todos", (request, response) => {
-  response.render("todos");
+  response.render("todos",{
+    todos : todolist
+  });
+});
+
+app.get("/todos", (req, res) => {
+  var q = req.body.
+  res.render("todos",{
+    todos : todolist
+  });
 });
 
 // listen for requests :)
