@@ -11,10 +11,10 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 
 var todolist = [
-  'Đi chợ',
-  'Nấu cơm',
-  'Rửa bát',
-  'Học code tại CodersX'
+  {id: 1, val: 'Đi chợ'},
+  {id: 1, val: 'Nấu cơm'},
+  {id: 1, val: 'Rửa bát'},
+  {id: 1, val: 'Học code tại CodersX'}
 ]
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
@@ -27,8 +27,11 @@ app.get("/todos", (request, response) => {
   });
 });
 
-app.get("/todos", (req, res) => {
-  var q = req.body.
+app.get("/todos/search", (req, res) => {
+  var q = req.query.q;
+  var matchedToDo = todolist.filter((todo)=>{
+    return todo.val.indexOf(q)
+  })
   res.render("todos",{
     todos : todolist
   });
