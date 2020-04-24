@@ -14,10 +14,10 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 var todolist = [
-  {id: 1, val: 'Đi chợ'},
-  {id: 2, val: 'Nấu cơm'},
-  {id: 3, val: 'Rửa bát'},
-  {id: 4, val: 'Học code tại CodersX'}
+  {id: 1, todo: 'Đi chợ'},
+  {id: 2, todo: 'Nấu cơm'},
+  {id: 3, todo: 'Rửa bát'},
+  {id: 4, todo: 'Học code tại CodersX'}
 ]
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
@@ -33,7 +33,7 @@ app.get("/todos", (request, response) => {
 app.get("/todos/search", (req, res) => {
   var q = req.query.q;
   var matchedToDo = todolist.filter((todo)=>{
-    return todo.val.toLowerCase().indexOf(q.toLowerCase()) !== -1
+    return todo.todo.toLowerCase().indexOf(q.toLowerCase()) !== -1
   })
   res.render("todo/index",{
     todos : matchedToDo,
@@ -46,7 +46,8 @@ app.get("/todos/create", (req, res) => {
 });
 
 app.post("/todos/create", (req, res) => {
-  todolist.push(req.body)
+  todolist.push(req.body);
+  res.redirect('/todos')
 });
 
 // listen for requests :)
