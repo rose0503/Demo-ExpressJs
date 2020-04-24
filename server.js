@@ -10,6 +10,9 @@ const pug = require("pug");
 app.set("view engine", "pug");
 app.set("views", "./views");
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 var todolist = [
   {id: 1, val: 'Đi chợ'},
   {id: 2, val: 'Nấu cơm'},
@@ -39,9 +42,11 @@ app.get("/todos/search", (req, res) => {
 });
 
 app.get("/todos/create", (req, res) => {
-  res.render("todo/create",{
-    todos : todolist
-  });
+  res.render("todo/create");
+});
+
+app.post("/todos/create", (req, res) => {
+  todolist.push(req.body)
 });
 
 // listen for requests :)
