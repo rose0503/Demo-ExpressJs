@@ -22,7 +22,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("/todos", (request, response) => {
-  response.render("todos",{
+  response.render("todo/index",{
     todos : todolist
   });
 });
@@ -32,9 +32,15 @@ app.get("/todos/search", (req, res) => {
   var matchedToDo = todolist.filter((todo)=>{
     return todo.val.toLowerCase().indexOf(q.toLowerCase()) !== -1
   })
-  res.render("todos",{
+  res.render("todo/index",{
     todos : matchedToDo,
     q: q
+  });
+});
+
+app.get("/todos/create", (req, res) => {
+  res.render("todo/create",{
+    todos : todolist
   });
 });
 
