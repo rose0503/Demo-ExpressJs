@@ -35,7 +35,7 @@ app.get("/todos", (request, response) => {
 
 app.get("/todos/search", (req, res) => {
   var q = req.query.q;
-  var matchedToDo = db.get("todos").filter((todo)=>{
+  var matchedToDo = db.get("todos").value().filter((todo)=>{
     return todo.text.toLowerCase().indexOf(q.toLowerCase()) !== -1
   })
   res.render("todo/index",{
