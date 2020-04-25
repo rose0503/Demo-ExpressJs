@@ -22,12 +22,6 @@ app.set("views", "./views");
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-var todolist = [
-  {id: 1, todo: 'Đi chợ'},
-  {id: 2, todo: 'Nấu cơm'},
-  {id: 3, todo: 'Rửa bát'},
-  {id: 4, todo: 'Học code tại CodersX'}
-]
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
   response.send("I love CodersX");
@@ -35,14 +29,14 @@ app.get("/", (request, response) => {
 
 app.get("/todos", (request, response) => {
   response.render("todo/index",{
-    todos : todolist
+    todos : db.get('todos').value()
   });
 });
 
 app.get("/todos/search", (req, res) => {
   var q = req.query.q;
-  var matchedToDo = todolist.filter((todo)=>{
-    return todo.todo.toLowerCase().indexOf(q.toLowerCase()) !== -1
+  var matchedToDo = db.get("todos").filter((todo)=>{
+    return todo.text.toLowerCase().indexOf(q.toLowerCase()) !== -1
   })
   res.render("todo/index",{
     todos : matchedToDo,
@@ -55,7 +49,7 @@ app.get("/todos/create", (req, res) => {
 });
 
 app.post("/todos/create", (req, res) => {
-  todolist.push(req.body);
+  db.get('todos').push(req.body);
   res.redirect('/todos')
 });
 
