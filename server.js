@@ -6,6 +6,15 @@
 const express = require("express");
 const app = express();
 const pug = require("pug");
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+
+const adapter = new FileSync('db.json')
+const db = low(adapter)
+
+// Set some defaults (required if your JSON file is empty)
+db.defaults({ todos: []})
+  .write()
 
 app.set("view engine", "pug");
 app.set("views", "./views");
