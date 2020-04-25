@@ -49,7 +49,7 @@ app.get("/todos/create", (req, res) => {
 });
 
 app.post("/todos/create", (req, res) => {
-  db.get('todos').push(req.body);
+  db.get('todos').push(req.body).write();
   res.redirect('/todos')
 });
 
