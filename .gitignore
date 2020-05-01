@@ -2,7 +2,7 @@
 .env
 .glitch-assets
 nodemon.json
-db.json
+.vscode/db.json
 pnpm-debug.log
 
 .config
