@@ -1,0 +1,9 @@
+.bash_history
+.env
+.glitch-assets
+nodemon.json
+db.json
+pnpm-debug.log
+
+.config
+.data
